@@ -1,11 +1,15 @@
 package com.sesi.projeto1.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.sesi.projeto1.dto.UsuarioDto;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 @Entity
 @Table(name = "tb_usuarios")
@@ -19,6 +23,9 @@ public class Usuario {
 	private String telefone;
 	private String senha;
 	private String roles;
+	
+	@OneToMany(mappedBy = "cliente")
+	private List<Pedido> Pedidos = new ArrayList<Pedido>();
 	
 	public Usuario (UsuarioDto dto) {
 		this.nome = dto.nome();
